@@ -4,32 +4,30 @@
     <meta charset="utf-8">
 
     <title>Our superheroes</title>
+   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
     
-  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=02XIpp1zuQGheFu_y0bFvU63Y9-uyXokvZsysRM7xUoPRt1rx2nU11tWjdqM1LieIsEYQ9pDNjlFi0oZMwVXnL2IekXwYQFoHVj9PeMVk0YH5-tpU0wyNPJfbPs4uFGQTbs7WNRygPBvRsaqQ0pI8w" charset="UTF-8"></script></head>
+  </head>
 
   <body>
 
       <header>
-
       </header>
 
       <section>
-        <a href="enlaces.html" target="_blank">ENLACE A LOS PROYECTOS</a>
+<center><a href="Contextualizaci2on.pdf">Contextualización</a></center>
       </section>
 
     <script>
 
     async function populate() {
 
-      const requestURL = 'miarchivo.json';
+      const requestURL = '../proyecto/superheroes.json';
       const request = new Request(requestURL);
 
       const response = await fetch(request);
-      const superHeroesText = await response.text();
+      const superHeroes = await response.json();
 
-      const superHeroes = JSON.parse(superHeroesText);
       populateHeader(superHeroes);
       populateHeroes(superHeroes);
 
@@ -42,7 +40,7 @@
       header.appendChild(myH1);
 
       const myPara = document.createElement('p');
-      myPara.textContent = `Hometown: ${obj.homeTown} // Formed: ${obj.formed}`;
+      myPara.textContent = `Localidad: ${obj.homeTown} ,Direccion ${obj.formed}`;
       header.appendChild(myPara);
     }
 
@@ -57,15 +55,29 @@
         const myPara2 = document.createElement('p');
         const myPara3 = document.createElement('p');
         const myList = document.createElement('ul');
-
+        const myexp1 = document.createElement('p');
         myH2.textContent = hero.name;
-        myPara1.textContent = `Secret identity: ${hero.secretIdentity}`;
-        myPara2.textContent = `Age: ${hero.age}`;
-        myPara3.textContent = 'Superpowers:';
+        myPara1.textContent = `Nombre: ${hero.name}`;
+        myPara2.textContent = `Edad: ${hero.age}`;
+        myPara3.textContent = 'Identidad Basica:';
+
+      
+/*
+        const myInfo1 = document.createElement('h2');
+        const myInfo2 = document.createElement('p');
+        const myInfo3 = document.createElement('p');
+        const myInfo3 = document.createElement('p');
+        const myList_Info = document.createElement('ul');
+        
+        myH2.textContent = hero.name2;
+        myPara1.textContent = `Nombre: ${hero.Certificados}`;
+        myPara2.textContent = `Edad: ${hero.Social}`;
+        myPara3.textContent = '';
+*/
 
         const superPowers = hero.powers;
         for (const power of superPowers) {
-          const listItem = document.createElement('li');
+         const listItem = document.createElement('li');
           listItem.textContent = power;
           myList.appendChild(listItem);
         }
@@ -75,7 +87,6 @@
         myArticle.appendChild(myPara2);
         myArticle.appendChild(myPara3);
         myArticle.appendChild(myList);
-
         section.appendChild(myArticle);
       }
     }
